@@ -106,6 +106,13 @@ YandexDisk.prototype = {
         };
         this._request('GET', srcPath, headers, null, fs.createWriteStream(targetFile), callback);
     },
+    steamFile: function(srcPath, stream, callback) {
+        var headers = {
+            'TE': 'chunked',
+            'Accept-Encoding': 'gzip'
+        };
+        this._request('GET', srcPath, headers, null, stream, callback);
+    },
 
     remove: function(path, callback) {
         this._request('DELETE', path, null, null, null, function(err) {
